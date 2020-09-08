@@ -37,7 +37,7 @@ function drawCanvas() {
     
     dotsCount++;
     if(dotsCount % 10 === 0) {
-        console.log(dotsCount)
+        console.log(dotsCount);
     }
 }
 
