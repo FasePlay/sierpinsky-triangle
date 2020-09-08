@@ -1,6 +1,8 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
+let dotsCount = 0;
+
 let triangleDots = [
     {
         name: "A",
@@ -32,6 +34,11 @@ let interval = setInterval(drawCanvas, 1);
 function drawCanvas() {
     createDot();
     drawElements();
+    
+    dotsCount++;
+    if(dotsCount % 10 === 0) {
+        console.log(dotsCount)
+    }
 }
 
 function drawElements() {
