@@ -28,25 +28,13 @@ let dots = [
     }
 ];
 
+initialCanvas()
 
 let interval = setInterval(drawCanvas, 1);
 
-function drawCanvas() {
-    createDot();
-    drawElements();
-    
-    dotsCount++;
-    if(dotsCount % 10 === 0) {
-        console.log(dotsCount);
-    }
-}
-
-function drawElements() {
+function initialCanvas() {
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = 'white';
-    ctx.strokeStyle = 'white';
 
     for (let i = 0; i < triangleDots.length; i++) {
         ctx.beginPath();
@@ -54,12 +42,29 @@ function drawElements() {
         ctx.stroke();
         ctx.fill();
     }
+}
 
-    for (let i = 0; i < dots.length; i++) {
-        ctx.beginPath();
-        ctx.arc(dots[i].x, dots[i].y, 0.5, 0, 2 * Math.PI);
-        ctx.stroke();
-        ctx.fill();
+function drawCanvas() {
+    createDot();
+    drawDot();
+
+    dotsCount++;
+    if(dotsCount % 10 === 0) {
+        console.log(dotsCount)
+    }
+}
+
+function drawDot() {
+    ctx.fillStyle = 'white';
+    ctx.strokeStyle = 'white';
+
+    ctx.beginPath();
+    ctx.arc(dots[dots.length-1].x, dots[dots.length-1].y, 0.1, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.fill();
+
+    if (dots.length % 1000 === 0) {
+        console.log(dots.length);
     }
 }
 
@@ -115,4 +120,6 @@ function createDot() {
             y: dots[lastIndex].y + distanceHalfY
         });
     }
+
+    dots.shift();
 }
